@@ -1,0 +1,1 @@
+# Stek_Dek_Ochered
