@@ -19,10 +19,11 @@ public:
 		while (start != NULL)
 		{
 			och *ptr = start;
-			start = top->next;
+			start = start->next;
 			delete ptr;
-
 		}
+		end = NULL;
+		N = 0;
 	};
 	void Add(Type D)
 	{
@@ -45,6 +46,7 @@ public:
 			cout << q->Data << " ";
 			q = q->next;
 		}
+		cout << endl;
 	};
 	Type Get()
 	{
