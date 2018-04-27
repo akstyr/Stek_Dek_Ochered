@@ -6,7 +6,7 @@ class Dek
 private:
 	struct dek
 	{
-		int Data;
+		Type Data;
 		dek *next;
 		dek *last;
 	};
@@ -57,25 +57,38 @@ public:
 		if (N == 2)
 			start->next = element;
 	};
-	int GetLeft()
+	Type GetLeft()
 	{
-		int D = start->Data;
-		dek *previous = start->next;
-		delete start;
-		start = previous;
+		if (start == NULL)
+			return N;
+		N--;
+		dek *del = start;
+		Type D = del->Data;
+		start = start->next;
+		delete del;		
 		return D;
 	};
-	int GetRight()
+	Type GetRight()
 	{
+		if (end == NULL)
+			return N;
+		N--;
+		dek *del = end;
+		Type D = del->Data;
+		end = end->last;
+		delete del;		
+		return D;
+		/*
 		int D = end->Data;
 		dek *previous = start->last;
 		delete end;
 		end = previous;
-		return D;
+		return D;*/
 	};
 	void PrintLeft()
 	{
 		dek *pr = start;
+		cout << " top dek-> ";
 		while (pr != NULL)
 		{
 			cout << pr->Data << " ";
@@ -86,6 +99,7 @@ public:
 	void PrintRight()
 	{
 		dek *q = end;
+		cout << " end dek-> ";
 		while (q != NULL)
 		{
 			cout << q->Data << " ";

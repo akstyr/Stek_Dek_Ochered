@@ -4,65 +4,61 @@ template <class Type>
 class Stek
 {
 public:
-	struct entry
+	struct entry //процедура-запись
 	{
 		Type Data;
 		entry *next;
 	};
 	entry *top = NULL;
-	int N = 0;
+	int N = 0; //кол-во записей
 public:
 	Stek(){}; 
-	void AllAdd(int n) 
+	void AllAdd(int n) //заполнение всего стека (нужно для инд. задания)
 	{
 		for (int i = n; i > 0; i--)
 			Add(i);
 	};
 
-	~Stek() 
+	~Stek() //деструктор
 	{
 		while (top != NULL)
 		{
 			entry *pr = top;
-			top = top->next;
-			delete pr;
+			top = top->next; //последовательно сдвигаем вниз
+			delete pr; //очищаем память
 		}
 		N = 0;
 	};
 
-	void Add(Type D)
+	void Add(Type D) //добавление элемента
 	{
 		N++;
-		entry *element = new entry;
-		element->Data = D;
-		element->next = top;
-		top = element;
+		entry *element = new entry; //выделение памяти
+		element->Data = D; //запись данных
+		element->next = top; //связываем с предидущим элементом
+		top = element; //новая вершина
 	};
 
-	Type Get()
+	Type Get() //взятие элемента
 	{
 		if (top == NULL)
-			return N; 
+			return N; //если элементов нет, вернет 0
 		N--;
-		/*Type D = top->Data;
-		entry *previous = top->next;
-		delete top;
-		entry *top = previous;
-		return D;*/
 		entry *del = top;
-		top = top->next;
-		return del->Data;
-		delete del;
+		Type D = del->Data;
+		top = top->next; //меняем вершину
+		delete del; //очищаем старую вершину
+		return D; 
 	};
 
-	void Print()
+	void Print() //вывод на экран
 	{
 		entry *pr = top;
 		cout << "top -> ";
-		while (pr != NULL)
+		while (pr != NULL) //выводим пока не дойдем до 0
 		{
 			cout << pr->Data << " ";
-			pr = pr->next;
+			pr = pr->next; //переход на след. элемент
 		}
 		cout << endl;
 	};

@@ -41,6 +41,7 @@ public:
 	void Print()
 	{
 		och *q = start;
+		cout << "start och ->"
 		while (q != NULL)
 		{
 			cout << q->Data << " ";
